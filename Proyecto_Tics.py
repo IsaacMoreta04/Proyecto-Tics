@@ -110,11 +110,9 @@ while True:
     print("2. Mostrar Estudiantes")
     print("3. Buscar Estudiante")
     print("4. Promedio General")
-    print("5. Estudiantes Aprobados")
-    print("6. Estudiantes Reprobados")
-    print("7. Salir")
+    print("5. Salir")
 
-    opcion = input("Seleccione una opción (1-7): ")
+    opcion = input("Seleccione una opción (1-5): ")
 
     if opcion == '1':
         agg_estudiante()
@@ -125,13 +123,9 @@ while True:
     elif opcion == '4':
         promedio_general()
     elif opcion == '5':
-        estudiantes_aprobados()
-    elif opcion == '6':
-        estudiantes_reprobados()
-    elif opcion == '7':
         print("Saliendo del sistema. ¡Hasta luego!")
         exit()
         break
      
     else:
-        print("Opción inválida. Por favor, seleccione una opción del 1 al 7.\n")
+        print("Opción inválida. Por favor, seleccione una opción del 1 al 5.\n")
