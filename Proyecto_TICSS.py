@@ -1,4 +1,3 @@
-
 Estudiantes = []
 Nota_Final = 10
 Notas = []
@@ -159,3 +158,4 @@ while True:
      
     else:
         print("Opción inválida. Por favor, seleccione una opción")
+
