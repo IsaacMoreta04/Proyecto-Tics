@@ -43,17 +43,18 @@ while (intentos == 1):
         exit()
         break
 
-
 def agg_estudiante():
+
     nombre = input("Ingrese el nombre del estudiante: ")
-    Estudiantes.append(nombre)
-    print(f"Estudiante {nombre} agregado exitosamente.")
+    apellido = input("Ingrese el apellido del estudiante: ")
+    Estudiantes.append(nombre + " " + apellido)
+    print(f"Estudiante {nombre}{apellido} agregado exitosamente.")
     nota = float(input("Ingrese la nota del estudiante: "))
     Notas.append(nota)
     if 7 <= nota <= Nota_Final:
-        print(f"El estudiante {nombre} ha aprobado con una nota de {nota}.\n")
+        print(f"El estudiante {nombre} {apellido} ha aprobado con una nota de {nota}.\n")
     elif 0 < nota < 7:
-        print(f"El estudiante {nombre} ha reprobado con una nota de {nota}.\n")
+        print(f"El estudiante {nombre} {apellido} ha reprobado con una nota de {nota}.\n")
     return
 
 def mostrar_estudiantes():
@@ -69,12 +70,13 @@ def mostrar_estudiantes():
     return
 
 def buscar_estudiante():
-    nombre = input("Ingrese el nombre del estudiante a buscar: ")
-    if nombre in Estudiantes:
-        print(f"El estudiante {nombre},está registrado.")
-        print(f"La nota es: {Notas[Estudiantes.index(nombre)]}\n")
+    
+    apellido = input("Ingrese el apellido del estudiante a buscar: ")
+    if apellido in Estudiantes:
+        print(f"El estudiante {apellido}, está registrado.")
+        print(f"La nota es: {Notas[Estudiantes.index(apellido)]}\n")
     else:
-        print(f"El estudiante {nombre} no se encuentra en la lista.\n")
+        print(f"El estudiante {apellido} no se encuentra en la lista.\n")
     return
 
 def promedio_general():
