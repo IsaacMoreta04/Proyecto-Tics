@@ -2,41 +2,26 @@ Estudiantes = []
 Nota_Final = 10
 Notas = []
 
-Materias = [] ####################################
+Materias = [] 
 
 
 print("------------Bienvenido-----------\n")
 print("Sistema de Gestión de Estudiantes ") 
 
-usuario_prof = "Alejandro_docente@esfot.edu.ec" ############################
-clave_prof = "Chicaiza2026"        ############################
-
-intentos = 3
+usuario_prof = "Alejandro_docente@esfot.edu.ec"
+clave_prof = "Chicaiza2026"       
 
 
-usuario = input("Ingrese el usuario:")
-clave = input("Ingrese la clave:")
+while True:
+    usuario = input("Ingrese el usuario: ")
+    clave = input("Ingrese la clave: ")
 
-if usuario_prof == "Alejandro_docente@esfot.edu.ec" and clave == "Chicaiza2026": ############################
-        print("Acceso concedido") 
-else:
-        print("Acceso denegado")
+    if usuario == usuario_prof and clave == clave_prof:
+        print("Acceso concedido")
+        break   
+    else:
+        print("Acceso denegado, intente nuevamente")
 
-while (usuario_prof != "Alejandro_docente@esfot.edu.ec" or clave != "Chicaiza2026") and intentos > 1 : ###########################
-        intentos -=1
-        usuario = input("Ingrese el usuario:")
-        clave = input("Ingrese la clave:")
-
-if (usuario_prof == "Alejandro_docente@esfot.edu.ec" and clave == "Chicaiza2026Alejandro_docente@esfot.edu.ec") : ###########################
-        print("Acceso concedido")       
-
-else: 
-        print("Acceso denegado ")
-
-while (intentos == 1):
-        print("Se han agotado los intentos. \n Acceso bloqueado.")
-        exit()
-        break
 def agg_estudiante():
 
     nombre = input("Ingrese el nombre del estudiante: ")
@@ -53,25 +38,43 @@ def agg_estudiante():
 
 def mostrar_estudiantes():
     if Estudiantes:
-        print("Lista de Estudiantes:")
-        for estudiante in Estudiantes:
-            print(f"- {estudiante}")
-        for i in range(len(Estudiantes)):
-            print(f"La nota de {Estudiantes[i]} es: {Notas[i]}")    
+        print("\n lista de estudiantes y notas ")
 
+        lista_ordenada = sorted(zip(Estudiantes, Notas), key=lambda x: x[1], reverse=True)
+        
+        for estudiante, nota in lista_ordenada:
+            print(f"- {estudiante} | Nota: {nota}")
+            
+        nota_maxima = max(Notas)
+        nota_minima = min(Notas)
+        promedio = sum(Notas) / len(Notas)
+
+        print("\n---------------------------------------")
+        print(f"» Calificación más alta: {nota_maxima}")  
+        print(f"» Calificación más baja: {nota_minima}")
+        print(f"» Promedio General:      {promedio:.2f}")
+        print("---------------------------------------\n")
+        
     else:
-        print("No hay estudiantes registrados.\n")
-    return
-
+        print("\nNo hay estudiantes registrados aún. Vaya a la Opción 1 primero.\n")
+        return
 def buscar_estudiante():
-    
     apellido = input("Ingrese el apellido del estudiante a buscar: ")
-    if apellido in Estudiantes:
-        print(f"El estudiante {apellido}, está registrado.")
-        print(f"La nota es: {Notas[Estudiantes.index(apellido)]}\n")
-    else:
-        print(f"El estudiante {apellido} no se encuentra en la lista.\n")
-    return
+    encontrado = False
+
+    for i, estudiante in enumerate(Estudiantes):
+       
+        partes = estudiante.split()
+        apellido_estudiante = partes[-1]
+
+        if apellido.lower() == apellido_estudiante.lower():
+            print(f"El estudiante {estudiante} está registrado.")
+            print(f"La nota es: {Notas[i]}\n")
+            encontrado = True
+            break
+
+    if not encontrado:
+        print(f"No se encuentra ningún estudiante con el apellido '{apellido}'.\n")
 
 def promedio_general():
     total_notas = 0
@@ -100,12 +103,12 @@ def estudiantes_reprobados():
             print(f"- {Estudiantes[i]} con nota {Notas[i]}")
     return
 
-def agregar_materia():          #######################################################
+def agregar_materia():          
     materia = input("Ingrese el nombre de la materia: ")
     Materias.append(materia)
     print(f"Materia '{materia}' agregada correctamente.\n")
 
-def menu_profesor():            #######################################################
+def menu_profesor():           
     while True:
         print("\n--- MENÚ PROFESOR ---")
         print("1. Agregar Materia")
@@ -129,10 +132,8 @@ def menu_profesor():            ################################################
 
 while True:
     
-   
-
     print("Menú de Opciones:")
-    print("1. Menu Profesores")        #######################################################
+    print("1. Menu Profesores")       
     print("2. Agregar Estudiante")
     print("3. Mostrar Estudiantes")
     print("4. Buscar Estudiante")
